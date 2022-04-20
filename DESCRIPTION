@@ -1,0 +1,10 @@
+Package: stability 
+Type: Package
+Title: Stability values
+Version: 0.1
+Date: 2021-04-20
+Author: Dominik Rothenhaeusler 
+Maintainer: Dominik Rothenhaeusler <rdominik@stanford.edu>
+Description: This package provides a function for investigating the stability of lm and glm parameters under distribution shift.
+License: GPL (>= 3) 
+RoxygenNote: 7.1.1
