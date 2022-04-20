@@ -1,7 +1,7 @@
 
 # R-package
 
-This package provides a function for evaluating the stability of lm and glm models under distribution shift.
+This package provides a function for evaluating the stability of lm and glm models under distribution shift. The method uses a Taylor expansion to simplify the computation of stability values. More details on stability values can be found [here](https://arxiv.org/pdf/2105.03067.pdf).
 
 ## How to install
 
