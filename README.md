@@ -15,13 +15,16 @@ The following code plots the distributional stability of the coefficient "pop15"
 fit <- lm(sr ~ pop15 + pop75 + dpi + ddpi, data = LifeCycleSavings)
 stability(fit,param="pop15",E=c("pop75","dpi","pop15"))
 ```
+![pop15 stability 1](./pop15-1.pdf)
 If the distribution shift is not specified, the function will evaluate the stability under shifts in all covariates.
 ```R
 stability(fit,param="pop15")
 ```
+![pop15 stability 2](./pop15-2.pdf)
 The function can also be used for generalized linear models.
 ```R
 fit <- glm(Postwt ~ Prewt + Treat,family = gaussian, data = anorexia)
 stability(fit,param = "TreatCont")
 ```
+![pop15 stability 2](./TreatCont.pdf)
 For discrete random variables, there are several parameters that might be of interest. As "parameter" one has to choose the parameter of interest using the dummified notation in summary(model).
