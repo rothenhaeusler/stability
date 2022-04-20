@@ -15,11 +15,11 @@ The following code plots the distributional stability of the coefficient "pop15"
 fit <- lm(sr ~ pop15 + pop75 + dpi + ddpi, data = LifeCycleSavings)
 stability(fit,param="pop15",E="dpi")
 ```
-In our opinion, a parameter should be deemed distributionally unstable if the upper bound or lower bound crosses zero under a distribution shift less than .6. 
 
 
 <img src="art/pop15-1.png" width="400">
 
+In our opinion, a parameter should be deemed distributionally unstable if the upper bound or lower bound crosses zero under a distribution shift less than .6. 
 
 If the distribution shift is not specified, the function will evaluate the stability under shifts in all covariates. This allows to judge which type of distribution shift the parameter is most sensitive to. 
 ```R
