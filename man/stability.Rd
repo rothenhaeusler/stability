@@ -19,9 +19,10 @@ Evaluation of model stability under distribution shift
 \examples{
 fit <- lm(sr ~ pop15 + pop75 + dpi + ddpi,
 data = LifeCycleSavings)
-stability(fit,param="pop15",E=c("pop75","dpi","pop15"))
+stability(fit,param="pop15",E="dpi")
 stability(fit,param="pop15")
 
+utils::data(anorexia, package = "MASS")
 fit <- glm(Postwt ~ Prewt + Treat,family = gaussian, data = anorexia)
 stability(fit,param = "TreatCont")
 
