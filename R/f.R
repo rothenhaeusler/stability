@@ -13,10 +13,10 @@
 #'
 #' @export
 stability <- function(model,param,E=NULL) {
-  infl <- influence(fit)
+  infl <- influence(model)
   influence_values <- sqrt(n)*infl$coefficients[,param]
-  n <- length(fit$fitted.values)
-  target_coef <- coef(fit)[param]
+  n <- length(model$fitted.values)
+  target_coef <- coef(model)[param]
   
   
   x <- seq(0,2,length.out=100)
@@ -24,15 +24,15 @@ stability <- function(model,param,E=NULL) {
   main
   plot(x,type = "n",col = "red", xlab = "Distribution shift in KL divergence", ylab = "Range of parameter under distribution shift", main = main,xlim=c(0,2),ylim = c(min(0,2*target_coef),max(0,2*target_coef)))
   
-  if (is.null(E)) { E <- names(fit$model)}
+  if (is.null(E)) { E <- names(model$model)}
   
   for (j in 1:length(E)){
     
-    if (is.numeric(fit$model[,E[j]])){
-      splines <- loess(influence_values~fit$model[,E[j]])
+    if (is.numeric(model$model[,E[j]])){
+      splines <- loess(influence_values~model$model[,E[j]])
       f_values <- splines$fitted
     } else {
-      f_values <- fitted.values(lm(influence_values ~ fit$model[,E[j]]))
+      f_values <- fitted.values(lm(influence_values ~ model$model[,E[j]]))
     }
     
     
