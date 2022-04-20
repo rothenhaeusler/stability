@@ -15,18 +15,21 @@ The following code plots the distributional stability of the coefficient "pop15"
 fit <- lm(sr ~ pop15 + pop75 + dpi + ddpi, data = LifeCycleSavings)
 stability(fit,param="pop15",E="dpi")
 ```
-In our opinion, a parameter should be deemed distributionally unstable if the upper bound or lower bound crosses zero under a distribution shift less than .6.
+In our opinion, a parameter should be deemed distributionally unstable if the upper bound or lower bound crosses zero under a distribution shift less than .6. 
+
 
 <img src="art/pop15-1.png" width="400">
 
-If the distribution shift is not specified, the function will evaluate the stability under shifts in all covariates. This allows to judge which type of distribution shift the parameter is most sensitive to.
+
+If the distribution shift is not specified, the function will evaluate the stability under shifts in all covariates. This allows to judge which type of distribution shift the parameter is most sensitive to. 
 ```R
 stability(fit,param="pop15")
 ```
 
 <img src="art/pop15-2.png" width="400">
 
-The function can also be used for generalized linear models.
+The function can also be used for generalized linear models. For discrete random variables, there are several parameters that might be of interest. As "parameter" one has to choose the parameter of interest using the dummified notation in summary(model).
+
 ```R
 fit <- glm(Postwt ~ Prewt + Treat,family = gaussian, data = anorexia)
 stability(fit,param = "TreatCont")
@@ -34,4 +37,4 @@ stability(fit,param = "TreatCont")
 
 <img src="art/TreatCont.png" width="400">
 
-For discrete random variables, there are several parameters that might be of interest. As "parameter" one has to choose the parameter of interest using the dummified notation in summary(model).
+Please let us know if you have any feedback!
