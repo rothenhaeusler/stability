@@ -10,10 +10,10 @@ This package provides a function for evaluating the stability of lm and glm mode
 
 ## Usage
 
-The following code plots the distributional stability of the coefficient "pop15" under distributional shifts in "pop75", "dpi", and "pop15", respectively.
+The following code plots the distributional stability of the coefficient "pop15" under a distribution shift in "dpi".
 ```R
 fit <- lm(sr ~ pop15 + pop75 + dpi + ddpi, data = LifeCycleSavings)
-stability(fit,param="pop15",E=c("pop75","dpi","pop15"))
+stability(fit,param="pop15",E="dpi")
 ```
 
 <img src="art/pop15-1.png" width="400">
