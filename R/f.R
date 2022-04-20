@@ -5,23 +5,23 @@
 #' @examples
 #' fit <- lm(sr ~ pop15 + pop75 + dpi + ddpi,
 #' data = LifeCycleSavings)
-#' stability(fit,param="pop15",E=c("pop75","dpi","pop15"))
+#' stability(fit,param="pop15",E="dpi")
 #' stability(fit,param="pop15")
 #'
+#' utils::data(anorexia, package = "MASS")
 #' fit <- glm(Postwt ~ Prewt + Treat,family = gaussian, data = anorexia)
 #' stability(fit,param = "TreatCont")
 #'
 #' @export
 stability <- function(model,param,E=NULL) {
   infl <- influence(model)
-  influence_values <- sqrt(n)*infl$coefficients[,param]
   n <- length(model$fitted.values)
+  influence_values <- n*infl$coefficients[,param]
   target_coef <- coef(model)[param]
   
   
   x <- seq(0,2,length.out=100)
   main = paste("Stability of parameter",param)
-  main
   plot(x,type = "n",col = "red", xlab = "Distribution shift in KL divergence", ylab = "Range of parameter under distribution shift", main = main,xlim=c(0,2),ylim = c(min(0,2*target_coef),max(0,2*target_coef)))
   
   if (is.null(E)) { E <- names(model$model)}

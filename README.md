@@ -31,6 +31,7 @@ stability(fit,param="pop15")
 The function can also be used for generalized linear models. For discrete random variables, there are several parameters that might be of interest. As "parameter" one has to choose the parameter of interest using the dummified notation in summary(model).
 
 ```R
+utils::data(anorexia, package = "MASS")
 fit <- glm(Postwt ~ Prewt + Treat,family = gaussian, data = anorexia)
 stability(fit,param = "TreatCont")
 ```
