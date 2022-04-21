@@ -10,7 +10,7 @@ This package provides a function for evaluating the stability of lm and glm mode
 
 ## Usage
 
-The following code computes the distributional stability of the coefficient "pop15" under a distribution shift in "dpi".
+The following code computes the distributional stability of the coefficient "pop15" under a distribution shift in "dpi". The function returns the s-value, which corresponds to the smallest shift in KL divergence that changes the sign of the parameter. In addition, the function draws a sensitivity plot that shows the worst-case values of the parameter under a given distribution shift.
 ```R
 > fit <- lm(sr ~ pop15 + pop75 + dpi + ddpi, data = LifeCycleSavings)
 > stability(fit,param="pop15",E="dpi")
