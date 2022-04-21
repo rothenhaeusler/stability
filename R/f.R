@@ -3,8 +3,7 @@
 #' @param param A coefficient in summary(model)
 #' @param E A subset of predictors in the formula of the model
 #' @examples
-#' fit <- lm(sr ~ pop15 + pop75 + dpi + ddpi,
-#' data = LifeCycleSavings)
+#' fit <- lm(sr ~ pop15 + pop75 + dpi + ddpi, data = LifeCycleSavings)
 #' stability(fit,param="pop15",E="dpi")
 #' stability(fit,param="pop15")
 #'
@@ -26,6 +25,7 @@ stability <- function(model,param,E=NULL) {
   
   if (is.null(E)) { E <- names(model$model)}
   
+  s_values <- rep(NA, length(E))
   for (j in 1:length(E)){
     
     if (is.numeric(model$model[,E[j]])){
@@ -34,13 +34,15 @@ stability <- function(model,param,E=NULL) {
     } else {
       f_values <- fitted.values(lm(influence_values ~ model$model[,E[j]]))
     }
-    
-    
-    y <- t(rbind(target_coef - 2*sqrt(x)*sd(f_values),target_coef + 2*sqrt(x)*sd(f_values)))
+
+    y <- t(rbind(target_coef - sqrt(2*x)*sd(f_values),target_coef + sqrt(2*x)*sd(f_values)))
+    s_values[j] <- round(exp(- target_coef^2/(2*sd(f_values))),3)
     lines(cbind(x,y[,1]), type = "l", col = j)
     lines(cbind(x,y[,2]), type = "l", col = j)
-    
   }
   legend(2,max(0,2*target_coef),xjust=1,pch=19,legend=E,col=1:length(E), title="Shift of ...")
-  
+  cat("\n Stability values (approximated via Taylor expansion)\n \n")
+  names(s_values) <- paste("s_",E,sep="")
+  print(s_values)
+  cat("\n")
 }
