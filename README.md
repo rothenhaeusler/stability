@@ -10,7 +10,7 @@ This package provides a function for evaluating the stability of lm and glm mode
 
 ## Usage
 
-The following code plots the distributional stability of the coefficient "pop15" under a distribution shift in "dpi".
+The following code computes the distributional stability of the coefficient "pop15" under a distribution shift in "dpi".
 ```R
 > fit <- lm(sr ~ pop15 + pop75 + dpi + ddpi, data = LifeCycleSavings)
 > stability(fit,param="pop15",E="dpi")
@@ -25,7 +25,7 @@ s_dpi
 
 <img src="art/pop15-1.png" width="400">
 
-In our opinion, a parameter should be deemed distributionally unstable if the upper bound or lower bound crosses zero under a distribution shift less than .6. 
+In our opinion, a parameter should be deemed distributionally unstable if the corresponding s-values is greater than .6. 
 
 If the distribution shift is not specified, the function will evaluate the stability under shifts in all covariates. This allows to judge which type of distribution shift the parameter is most sensitive to. 
 ```R
