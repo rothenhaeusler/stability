@@ -17,8 +17,7 @@ stability(model, param, E = NULL)
 Evaluation of model stability under distribution shift
 }
 \examples{
-fit <- lm(sr ~ pop15 + pop75 + dpi + ddpi,
-data = LifeCycleSavings)
+fit <- lm(sr ~ pop15 + pop75 + dpi + ddpi, data = LifeCycleSavings)
 stability(fit,param="pop15",E="dpi")
 stability(fit,param="pop15")
 
